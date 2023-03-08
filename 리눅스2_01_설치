@@ -1,0 +1,86 @@
+1w : 환경구성 , ip개념 설명, 네크워크 관련명령어, 원격접속(telnet,ssh,vnc)
+2w : ftp, auto mount, nfs,autofs,samba서버,DHCP서버
+3w : DNS(+nameserver), web
+4w : DB,web+DB utils
+
+vmware 16
+http://naver.me/xxpIVcFp
+
+한글putty
+http://naver.me/F9QjWYQl
+
+CentOS 7 everything ISO
+http://naver.me/x50o5UH3
+
+김기태
+010-4536-0187
+
+운영체제(Operating System)
+	장치(device)를 사람이 사용하기 쉽게 만들어주는 역할
+
+운영체제 분류
+ - 장치
+	desktop OS			: windows, MAC OS 등
+	workstation OS	: Unix, Linux, windows server 등
+
+ - 사용 환경
+	CLI : Command Line Interface - 명령줄을 이용한 사용 환경(화면에 글자만 보이는 환경, CUI/TUI와 같은 의미)
+	GUI : Graphic User Interface - 그래픽을 이용한 사용 환경
+
+Linux 특징
+ - 오픈 소스 운영체제
+ - 다양한 회사에서 소스르르 가져다가 Linux 운영체제를 만들어 냄
+     > Linux는 계열과 종류가 다양하다
+
+  * 수업은 redhat 계열의 CentOS Linux 사용
+
+ - unix 기반의 대표적인 운영체제
+
+
+[create a new virtual machine 생성과정]
+1:
+typical > 기본설치
+custom > 세부설치
+2: 제일높은버전
+3: 1)설치cd로 설치 2) 설치과정몇가지메뉴들을못보게됨 3)나중에 설치 
+4: 19_server 이름  2) 아까만든 서버폴드 선택
+5: cpu 1개 cores 1개 total cores 1개
+6: 기본값 그대로
+7: host-only 안씀,  NAT사용(공유기라고 생각), bridged브릿지 안씀()
+8: 추천값
+9: disk type > 추천값
+10: create a new ..
+
+/boot ,  / , swap 세가지 auto mount 되도록 설치됨
+reboot , init 6  둘다 재부팅
+
+putty :  consolas , utf8,   ssh>kex> 14젤위로
+
+운영체제 사용 방식
+ 1. single booting mode
+    하나의 장치에 하나의 운영체제만 설치
+    부팅 시 boot loader가 설치된 운영체제로 바로 부팅
+
+ 2. multi booting mode
+    하나의 장치에 여러 운영체제를 설치
+    부팅 시 boot loader가 설치된 운영체제 목록을 출력하고, 선택된 운영체제로 부팅
+    운영체제 간의 자료 취급 방법 등 각종 호환성 문제 때문에 현재는 잘 사용되지 않는 방식
+
+ 3. virtual booting mode
+    가상의 컴퓨터를 만들어서 운영체제를 설치
+    실제 컴퓨터는 single booting mode 방식으로 운용
+     > 내부에 가상화 환경을 제공하는 프로그램을 사용하여 가상 컴퓨터 생성
+    가상 컴퓨터가 파일로 저장되어 복사/백업 등의 작업이 쉽다
+
+가상화 환경 프로그램
+ 1. Virtual Box
+    - Oracle 제품
+    - 무료로 사용
+    - 인터페이스가 불편하게 구성
+       > 몇몇 메뉴가 숨어있고, a 기능의 활성화를 위해 b 기능의 설정을 수정하는 경우도 있다
+
+ 2. VMware workstation
+    - VMware : Virtual Machine software
+    - 무료 버전과 유료 버전으로 구성
+       > workstation player : 개인 - 무료, 단체 - 유료, 인터페이스에 몇몇 메뉴가 누락
+       > workstation pro : 유료, 모든 메뉴를 제공
