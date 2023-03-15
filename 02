@@ -1,0 +1,32 @@
+원격 접속 - VNC
+ - GUI 환경의 원격 접속
+
+ - 접속할 session을 만들고 해당 session으로 client가 접속하는 방식
+    > VNC server가 session을 만들고 암호를 설정해야 client가 접속이 가능
+
+ - VNC를 제공하는 프로그램은 여러가지가 있고, 수업에서는 tigervnc 프로그램을 사용
+
+ - 정보
+        패키지	    : tigervnc-*
+        데몬	       : X
+        방화벽	    : port=5900+@/tcp
+        설정파일	 : X
+
+    * port의 경우 5900 + session 번호를 해당 session의 port 번호로 사용
+
+ - 관련 명령어
+  1. vncserver
+        vncserver	                : 열려있는 session이 없으면 1번, 있으면 가장 빠른 session을 생성
+
+        vncserver :숫자	          : 숫자번의 session 생성
+
+        vncserver -list	          : 현재 생성되어 있는(= 접속이 가능한) session 확인
+
+        vncserver -kill :숫자	    : 숫자번의 session 종료
+
+  2. vncviewer
+        vncviewer <접속할 IP>:<session 번호>
+	                               : 해당 session으로 접속
+
+  3. vncpasswd
+        vncpasswd	                : VNC 접속에 사용하는 암호 재설정
