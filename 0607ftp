@@ -1,0 +1,80 @@
+FTP
+ - File Transfer Protocol; 파일 전송을 위한 통신 규칙/약속
+
+ - FTP server를 구성하면 client가 접속하여 자신의 파일을 server에 복사(upload)할 수 있고
+   server에 저장된 파일을 자신의 컴퓨터로 복사(download)할 수 있다
+
+ - FTP를 제공하는 여러가지 프로그램이 존재하며 수업에서는 vsftpd 사용
+
+ - FTP server는 기본적으로 두 종류의 server로 동작
+  1. 로컬 FTP server    : FTP server가 동작 중인 장치의 일반 사용자 계정으로 접속하는 FTP
+  2. 익명 FTP server    : 누구나 접속하는 FTP
+
+ - 정보
+        패키지	    : vsftpd-*
+        데몬	       : vsftpd
+        방화벽	    : port=20/tcp,21/tcp,random/tcp, service=ftp
+        설정파일	 : /etc/vsftpd/vsftpd.conf
+        
+        
+FTP 
+ - FTP 연결 시 active mode와 passive mode 중 하나로 연결된다
+  1. active mode
+      > 기본 사용 환경
+
+      > 동작 순서
+       1) client가 자신의 random1 port를 사용하여 server의 21번 port로 연결
+          이 상태에서 각종 명령어를 주고 받는다
+
+       2) data를 주고받기 위해 client는 server에게 자신의 random2 port를 알려주고
+          server가 자신의 20번 port를 사용하여 client의 random2 port로 연결
+
+        client:R1 -> server:21
+        server:20 -> client:R2
+
+  2. passive mode
+      > client의 편의를 위해 사용하는 환경
+
+      > 동작 순서
+       1) client가 자신의 random1 port를 사용하여 server의 21번 port로 연결
+          이 상태에서 각종 명령어를 주고 받는다
+
+       2) data를 주고받기 위해 client가 server에게 연결할 port를 요청
+          server는 client에게 random port를 알려주고 client가 자신의 random2 port를 사용하여 server의 random port로 연결
+
+        client:R1 -> server:21
+        client:R2 -> server:random
+
+ - FTP는 사용자 격리 기능을 지원한다
+    > 익명 사용자는 기본적으로 격리 상태
+      로컬 사용자는 격리되지 않은 상태가 기본값
+
+    > 로컬 사용자는 chroot 설정을 제어하여 격리를 할 수 있다
+
+오토 마운트
+ - 모든 마운트 된 파티션은 시스템 종료 시 마운트 해제
+    > 부팅 시 자동으로 마운트되도록 설정 된 장치들만 마운트되어 부팅
+
+ - 오토 마운트 설정을 하면 특정 장치를 부팅하면서 자동으로 마운트 시킬 수 있다
+    > 운영체제 설치 시 기본적으로 생성되는 /etc/fstab 파일에서 오토 마운트 설정이 가능
+
+ - /etc/fstab 작성 방법
+
+        장치명    마운트포인트    파일시스템 형식    옵션    dump 운용    fsck 동작
+
+    * 상세 설명
+        장치명	       : 오토마운트 할 장치 파일의 이름을 절대경로로 작성
+
+        마운트포인트	 : 장치가 오토마운트 될 디렉토리를 절대경로로 작성
+
+        파일시스템 형식 : 오토마운트 할 장치의 파일시스템 형식을 작성
+
+        옵션	          : 오토마운트를 하면서 적용될 마운트 옵션
+
+        dump 운용	    : 해당 장치의 dump 사용 여부
+                        0 : 사용 안 함, 1 : 사용
+                        (단, CentOS 7 버전에서는 systemd 메인 프로세스가 알아서 사용하기 때문에 0으로 설정)
+
+        fsck 동작	    : 마운트 전에 해당 파일시스템의 상태를 확인
+                        0 : 사용 안 함, 1 : root partition, 2 : other partition
+                        (단, CentOS 7 버전에서는 systemd 메인 프로세스가 알아서 체크하기 때문에 0으로 설정)
