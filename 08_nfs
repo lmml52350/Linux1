@@ -1,0 +1,16 @@
+NFS
+ - Network File System; 네트워크를 이용한 파일시스템(= 파티션) 사용
+    > 네트워크를 통하여 다른 장치의 파티션을 마운트
+
+ - 처음에는 unix 중 하나에서 사용
+    > 유용하게 사용 가능한 기능이라 다른 운영체제에서도 기능을 추가
+
+ - 용량을 제공해주는 장치를 NFS server, 용량을 제공 받는 장치를 NFS client로 분류
+    > NFS server에서는 NFS 설정을 통하여 '어느 장치에게 어떤 용량을 제공하겠다' 지정
+      NFS client에서는 NFS server가 제공하는 용량을 자신에게 마운트하여 사용
+
+ - 정보
+        패키지	    : nfs-*
+        데몬	       : nfs
+        방화벽	    : service=nfs
+        설정파일	 : /etc/exports
