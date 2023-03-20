@@ -14,3 +14,21 @@ NFS
         데몬	       : nfs
         방화벽	    : service=nfs
         설정파일	 : /etc/exports
+
+
+마운트후 
+[root@server ~]# mount -t nfs 192.168.1.128:/nfs_server /nfs_client
+[root@server ~]# df -h
+Filesystem                 Size  Used Avail Use% Mounted on
+devtmpfs                   471M     0  471M   0% /dev
+tmpfs                      487M     0  487M   0% /dev/shm
+tmpfs                      487M  8.3M  478M   2% /run
+tmpfs                      487M     0  487M   0% /sys/fs/cgroup
+/dev/sda3                   17G  5.0G   13G  30% /
+/dev/sda1                 1014M  169M  846M  17% /boot
+/dev/sdb1                   88M  1.6M   80M   2% /nfs_server  서버역
+tmpfs                       98M  8.0K   98M   1% /run/user/42
+tmpfs                       98M     0   98M   0% /run/user/0
+192.168.1.128:/nfs_server   88M  1.5M   80M   2% /nfs_client  (client)역
+cp /etc/inittab /nfs_client  복사 확인
+[root@server ~]# ll /nsf_client  
