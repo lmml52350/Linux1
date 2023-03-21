@@ -1,0 +1,35 @@
+본사가 자서에 5g 용량추가 요청
+ 
+
+hdd추가후 
+mkfs.xfs /dev/sdb1   
+mkdir /nfs
+vi /etc/fstab  
+/dev/sdb1 /nfs  xfs defaults 0 0
+vi /etc/export
+/nfs 192.168.1.129(rw,no_root_squash,sync)
+
+[root@server ~]# systemctl restart nfs
+[root@server ~]# systemctl  enable nfs
+bash: ststemctl: 명령을 찾을 수 없습니다...
+[root@server ~]# firewall-cmd --permanent --add-service=nfs
+success
+[root@server ~]# firewall-cmd --reload
+success
+[root@server ~]#
+
+ssh 192.168.1.129
+vi /etc/autofs.conf
+
+vi /etc/auto.misc
+nfs -rw,hard,intr   192.168.1.128:/nfs
+[root@server ~]# systemctl restart nfs
+[root@server ~]# systemctl  enable nfs
+
+init6
+
+exportfs -v
+ll /misc
+touch /misc/nfs/test
+exit
+ll /nfs
