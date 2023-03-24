@@ -1,0 +1,58 @@
+
+
+1、第一步，安装bind 
+
+yum -y install bind bind-utils
+
+2、第二步：修改主配置文件
+
+ vim /etc/named.conf：
+
+//将下行中的127.0.0.1修改为any，代表允许监听任何IP地址。
+
+listen-on port 53 { 127.0.0.1; };
+
+//将下行中的localhost修改为any，代表允许任何主机查询。
+
+allow-query { localhost; };
+
+3、修改DNS 地址为本机IP  
+
+    修改配置文件 etc/sysconfig/network-scripts/ ifcfg-eth0   DNS 为本机IP
+
+  注意这一步，需要重启网卡，systemctl restart network  （centos7）
+
+4、第四步，修改区域配置文件 /etc/named.rfc1912.zones
+
+ vi /etc/named.rfc1912.zones  参照里面的格式去写，增加以下内容
+
+zone "magedu.org" {     #magedu.org 这是域名 前面不要画蛇添足的加www ，加了www,代表 是台机器了
+type master;     #类型，master 代表主
+file "magedu.org.zone";  #文件 这个文件是相对路径，会自动被存放在/var/named 里面，这个从named.conf 配置文件的 directory 那看到
+
+};
+
+修改晚区域数据文件后，最好用命令检查以下语法
+
+named-checkconf
+named-checkzone magedu.org /var/named/magedu.org.zone
+systemctl start named          #第一次启动服务
+rndc reload                    #不是第一次启动服务
+ 
+5、第五步：cd /var/named/ 进入这个文件夹下，创建 magedu.org.zone 这个文件，因为这个文件对权限 格式有要求，我们建议用cp 命令复制自带的
+
+cp named.localhost magedu.org.zone -p   #-p 是保留属性的意思
+
+也可以命令格式
+
+touch /var/named/magedu.org.zone 
+
+chmod 640 /var/named/magedu.org.zone 
+
+chgrp named /var/named/magedu.org.zone 
+
+6、第六步，修改配置文件  magedu.org.zone
+
+资源定义的格式
+
+name   [TTL] 　　IN　　 rr_type　　 value
