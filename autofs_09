@@ -1,0 +1,11 @@
+autofs
+ - auto filesystem; 파일시스템(= 파티션)을 자동으로 마운트 해주는 서비스
+
+ - /etc/fstab 파일을 이용한 오토마운트는 부팅 시 무조건 동작을 했다면
+   autofs 서비스를 이용한 오토마운트는 autofs 서비스 동작 시 마운트도 진행
+
+ - 정보
+        패키지	    : autofs-*
+        데몬	       : autofs
+        방화벽	    : X (오토마운트를 위한 서비스이기 때문에 누군가 나에게 접근 X)
+        설정파일	 : /etc/autofs.conf
