@@ -16,11 +16,6 @@ listen-on port 53 { 127.0.0.1; };
 
 allow-query { localhost; };
 
-3、修改DNS 地址为本机IP  
-
-    修改配置文件 etc/sysconfig/network-scripts/ ifcfg-eth0   DNS 为本机IP
-
-  注意这一步，需要重启网卡，systemctl restart network  （centos7）
 
 4、第四步，修改区域配置文件 /etc/named.rfc1912.zones
 
@@ -31,6 +26,9 @@ type master;     #类型，master 代表主
 file "magedu.org.zone";  #文件 这个文件是相对路径，会自动被存放在/var/named 里面，这个从named.conf 配置文件的 directory 那看到
 
 };
+
+
+cd /var/named 
 
 修改晚区域数据文件后，最好用命令检查以下语法
 
