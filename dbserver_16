@@ -1,0 +1,60 @@
+
+ - CentOS는 6버전까지는 mysql이라는 DB server를 무료로 사용했으나
+   mysql이 유료화되면서 CentOS 7버전부터는 mariadb라는 DB server의 구성 패키지를 설치 CD에 포함
+
+ - 정보
+        패키지	    : mariadb-*
+        데몬	       : mariadb
+        방화벽	    : service=mysql
+        설정파일	 : /etc/my.cnf (DB server 동작에 대한 설정)
+	                  mysql (mariadb 내부 데이터베이스, DB server에 대한 각종 설정)
+
+ - 접속 명령어
+        mysql -u <DB 계정명> -p [DATABASE]
+
+ - 용어 정리
+        SQL문	    : DB server에서 사용하는 명령어
+        database	 : table들의 집합체
+        table	    : 실제 데이터가 저장되는 최소 단위
+        field	    : table에 저장되는 데이터의 종류(범주), column이라고도 표현
+        value	    : field에 맞춰서 table에 저장되는 데이터
+
+
+mysql -u root -p mysql
+alter xxxx  건드릴것 적음
+
+desc tbtest > 현재상황
+alter table tbtest drop addr  날리기
+
+use mysql; 
+show varibles like 'c%'s
+
+vi /etc/my.cnf  >>  characer-set-server = utf8
+		collation-server = utf_general_ci
+
+
+
+status
+alter table tbtest modify name char(20) char set utf8;
+update tbtest set name="테스트" where num3;
+selet * from tbtest
+
+
+
+
+---------------useritbank로 dbitbank모든권한 갖게----------------------------------------------------
+
+yum -y install mariadb-*
+
+
+systemctl restart mariadb
+mysql - u root -p mysql 
+delete from user where user='';
+delete from db;
+update user set password=password('itbank') where user='root';
+create database dbitbank;
+insert into user(host,user,password) values ('localhost', 'useritbank', password('itbank'));
+insert into db values ('localhost', 'dbitbank', 'useritbank',
+'y''y''y''y''y''y''y''y''y''y'
+'y''y''y''y''y''y''y''y''y');
+exit
