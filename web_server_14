@@ -1,0 +1,22 @@
+Web server
+ - client의 요청에 web page를 제공해주는 서버
+    > client는 web browser 프로그램을 사용하여 web server에 접근하고
+      web server는 접근한 client에게 알맞는 web page를 제공
+
+ - web page는 크게 두 가지 종류로 구분
+    > 정적 web page : 모든 client에게 미리 만들어놓은 page를 동일하게 제공
+                     (ex.  html, java script 등으로 만든 page)
+      동적 web page : 각 client의 정보에 따라 알맞는 page를 꾸며서 제공
+                     (ex.  JSP, PHP 등의 만든 page)
+
+ - web server 프로그램도 여러가지가 존재하고, 수업에서는 apache web server 사용
+    > 가볍고 호환성이 높아 가장 많이 사용되는 web server
+
+ - 정보
+        패키지	    : httpd-*
+        데몬	       : httpd
+        방화벽	    : port=80/tcp, service=http
+        설정파일	 : /etc/httpd/conf/httpd.conf
+
+    * https는 http를 ssl 인증을 사용하여 보호하는 protocol
+       > http(80) + ssl(443)
