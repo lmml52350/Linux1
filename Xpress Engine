@@ -1,0 +1,12 @@
+Xpress Engine
+-php 언어로 만들어진 web page 제공
+	+ web page의 내용물으 DB server에 저장
+
+-저장은 데이터를 불러와서 언제든지 webpage복구 가능
+-db server와 web server가 서로 다른 장치에 구성되어 있어도 정상적으로 사용가능
+-core와 각종 module로 구성
+>core설치후 필요한 module을 조합하여 web page생성
+-core설치시 테이블에 붙는 접두사 지정
+>XE와 관련된 테이블은 지정한 접두사가 붙어서 만들어 진다
+(해당 접두사로 시작하는 테이블들이 정상적으로 전해하면 해당 내용을 불러오기)
+사이트 : xel.xpressengine.com
