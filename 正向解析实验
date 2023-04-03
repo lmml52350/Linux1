@@ -18,14 +18,14 @@ vi /etc/named.rfc1912.zones  파일에서    zone추가
 
 zone "2bwithu.co.kr" IN {
         type master;
-        file "2b.zone";
+        file "xxx.zone";
         allow-update { any; };
         allow-transfer { any; };
 };
 
 zone "1.168.192.in-addr.arpa" IN {
         type master;
-        file "2b.rev";
+        file "xxx.rev";
         allow-update { any; };
         allow-transfer { any; };
 };
