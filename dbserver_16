@@ -40,7 +40,89 @@ update tbtest set name="테스트" where num3;
 selet * from tbtest
 
 
+DB server
+ - Database server; 데이터베이스를 모아놓은 서버
 
+ - 스마트폰의 개발 및 보급에 따라 인터넷의 활용이 급속도로 늘어나면서 무수히 많은 데이터 생성
+    > 많은 데이터들을 효율적으로 저장 및 관리하기 위해서 database를 사용
+
+ - CentOS 6버전까지는 mysql이라는 DB server를 기본적으로 제공했으나 mysql이 유료화가 되면서
+   CentOS 7버전부터 mariadb라는 DB server를 기본적으로 제공
+
+ - 정보
+	패키지	: mariadb-*
+	데몬	: mariadb
+	방화벽	: service=mysql
+	설정파일	: /etc/my.cnf - mariadb 데몬 실행에 관련된 설정
+		  (database) mysql - DB server 내부에서 server 전체에 대한 설정
+
+ - 접속 명령어
+	mysql -u <DB 계정> -p [<database 이름>]
+
+ - 용어 정리
+	SQL문	 : DB server에서 사용하는 명령어
+	database : table들의 집합체
+	table	 : 실제 데이터가 저장되는 최소 단위
+	field	 : table 안에 저장되는 데이터들의 종류(분류)
+	column	 : field에 맞춰서 table에 저장되는 데이터
+
+ - DB 사용
+    화면 청소
+	ctrl + l
+
+    DB서버의 버전, 날짜, 시간 확인
+	select version(), current_date, current_time;
+
+    Database/table 확인
+	show { databases | tables };
+
+	   * databases는 현재 접속한 DB서버 내부의 database들만 출력
+	     tables는 현재 사용중인 database 내부의 table들만 출력
+
+    Database/table 생성
+	create database <생성할 DB이름>
+	create table <생성할 table이름> (필드1 자료형(크기), 필드2 자료형(크기) ...);
+
+	   * 언어에서 말하는 'int가 4byte다' 라는 내용은 memory(RAM)공간에서의 용량을 의미
+	     table생성 시 자료형 뒤에 붙이는 크기는 주 기억 장치(HDD/SSD)에 저장되는 용량을 의미
+	     ('필드에 데이터가 몇 byte 입력 가능하다')
+		> 알파벳 대/소문자, 숫자, 특수문자는 1byte
+		  한글 2byte
+
+    사용중인 Database 변경
+	use <DB이름>;
+
+    table의 구조 확인(field 확인)
+	describe <table이름>;
+	desc <table이름>;
+	explain <table이름>;
+
+    database/table 삭제
+	drop { database | table } <대상>;
+
+    table 내부 value 확인
+	select <field명> from <table명>;
+
+    table 내부의 value를 삭제
+	delete from <table명> where <field명>=<조건>;
+
+    table 내부의 value 중 특정 data를 변경
+	update <table명> set <field명>=<변경할data> where <field명>=<조건>;
+
+    table 내부에 value 입력
+	insert into <table명>[(field명)] values (입력할 value)
+
+ - user/db table의 역할
+	user	: DB서버 사용자 계정 관리(+ 권한 설정)
+		   > user table에서 사용자에게 권한을 주면, DB서버 전체에 영향을 준다
+	db	: 특정 DB사용자에게 database에 대한 권한 할당
+		   > db table에서 사용자에게 권한을 주면, 해당 database에만 영향을 준다
+
+ - table 생성 시 자료형
+	int	: 정수(숫자) 데이터
+	char	: 문자 데이터, 고정 용량(정해진 byte수 만큼의 용량을 항상 사용)
+	varchar : 문자 데이터, 가변 용량(입력된 데이터에 따라 용량 다름, 정해진 byte수는 최대 용량)
+	
 
 ---------------useritbank로 dbitbank모든권한 갖게----------------------------------------------------
 
